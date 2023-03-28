@@ -1,0 +1,456 @@
+#VRML_SIM R2022b utf8
+# license: Apache License 2.0
+# license url: http://www.apache.org/licenses/LICENSE-2.0
+# This is a proto file for Webots for the Wheelbipedrobot
+# Extracted from a URDF content string
+
+PROTO Wheelbipedrobot [
+  field  SFVec3f     translation     0 0 0
+  field  SFRotation  rotation        0 0 1 0
+  field  SFString    name            "Wheelbipedrobot"  # Is `Robot.name`.
+  field  SFString    controller      "void"             # Is `Robot.controller`.
+  field  MFString    controllerArgs  []                 # Is `Robot.controllerArgs`.
+  field  SFString    customData      ""                 # Is `Robot.customData`.
+  field  SFBool      supervisor      FALSE              # Is `Robot.supervisor`.
+  field  SFBool      synchronization TRUE               # Is `Robot.synchronization`.
+  field  SFBool      selfCollision   FALSE              # Is `Robot.selfCollision`.
+]
+{
+  Robot {
+    translation IS translation
+    rotation IS rotation
+    controller IS controller
+    controllerArgs IS controllerArgs
+    customData IS customData
+    supervisor IS supervisor
+    synchronization IS synchronization
+    selfCollision IS selfCollision
+    children [
+      Shape {
+        appearance DEF tie PBRAppearance {
+          roughness 1.000000
+          metalness 0
+        }
+        geometry DEF base Mesh {
+          url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/base.STL"
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 0.000000 -1.000000
+          anchor 0.075000 0.000000 -0.155000
+        }
+        device [
+          RotationalMotor {
+            name "LFM"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "LFM_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.075000 0.000000 -0.155000
+          children [
+            Shape {
+              appearance USE tie
+              geometry DEF LF_thigh Mesh {
+                url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/LF_thigh.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 -1.000000
+                anchor 0.150000 0.000000 -0.010000
+              }
+              device [
+                RotationalMotor {
+                  name "LFK"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "LFK_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.150000 0.000000 -0.010000
+                children [
+                  Shape {
+                    appearance USE tie
+                    geometry DEF LF_crus Mesh {
+                      url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/LF_crus.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 -1.000000
+                      anchor -0.225000 -0.179770 -0.035000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "LWM"
+                        maxTorque 10000
+                      }
+                      PositionSensor {
+                        name "LWM_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.225000 -0.179770 -0.035000
+                      children [
+                        Shape {
+                          appearance USE tie
+                          geometry DEF L_wheel Mesh {
+                            url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/L_wheel.STL"
+                          }
+                        }
+                      ]
+                      name "L_wheel"
+                      boundingObject USE L_wheel
+                      physics Physics {
+                        density -1
+                        mass 0.527790
+                        centerOfMass [ 0.000000 -0.000000 -0.000000 ]
+                        inertiaMatrix [
+                          6.311500e-04 6.311500e-04 1.121500e-03
+                          -3.660200e-20 1.615100e-20 5.278700e-21
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "LF_crus"
+                boundingObject USE LF_crus
+                physics Physics {
+                  density -1
+                  mass 0.137700
+                  centerOfMass [ -0.122120 -0.097578 -0.000856 ]
+                  inertiaMatrix [
+                    5.122200e-04 7.909700e-04 1.298700e-03
+                    -6.159400e-04 -1.212000e-05 -9.683600e-06
+                  ]
+                }
+              }
+            }
+          ]
+          name "LF_thigh"
+          boundingObject USE LF_thigh
+          physics Physics {
+            density -1
+            mass 0.032477
+            centerOfMass [ 0.075000 0.000000 0.000000 ]
+            inertiaMatrix [
+              1.348000e-06 7.406100e-05 7.486700e-05
+              -1.296300e-20 1.983400e-22 -3.452700e-23
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 0.000000 -1.000000
+          anchor -0.075000 0.000000 -0.155000
+        }
+        device [
+          RotationalMotor {
+            name "LBM"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "LBM_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.075000 0.000000 -0.155000
+          children [
+            Shape {
+              appearance USE tie
+              geometry DEF LB_thigh Mesh {
+                url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/LB_thigh.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 -1.000000
+                anchor -0.150000 0.000000 0.010000
+              }
+              device [
+                RotationalMotor {
+                  name "LBK"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "LBK_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.150000 0.000000 0.010000
+                children [
+                  Shape {
+                    appearance USE tie
+                    geometry DEF LB_crus Mesh {
+                      url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/LB_crus.STL"
+                    }
+                  }
+                ]
+                name "LB_crus"
+                boundingObject USE LB_crus
+                physics Physics {
+                  density -1
+                  mass 0.137700
+                  centerOfMass [ 0.122120 -0.097578 -0.000856 ]
+                  inertiaMatrix [
+                    5.122200e-04 7.909700e-04 1.298700e-03
+                    6.159400e-04 1.212000e-05 -9.683600e-06
+                  ]
+                }
+              }
+            }
+          ]
+          name "LB_thigh"
+          boundingObject USE LB_thigh
+          physics Physics {
+            density -1
+            mass 0.032477
+            centerOfMass [ -0.075000 -0.000000 0.000000 ]
+            inertiaMatrix [
+              1.348000e-06 7.406100e-05 7.486700e-05
+              -4.487100e-21 1.516500e-23 1.778400e-23
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 0.000000 1.000000
+          anchor 0.075000 0.000000 0.155000
+        }
+        device [
+          RotationalMotor {
+            name "RFM"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "RFM_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation 0.075000 0.000000 0.155000
+          children [
+            Shape {
+              appearance USE tie
+              geometry DEF RF_thigh Mesh {
+                url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/RF_thigh.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 1.000000
+                anchor 0.150000 0.000000 0.010000
+              }
+              device [
+                RotationalMotor {
+                  name "RFK"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "RFK_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation 0.150000 0.000000 0.010000
+                children [
+                  Shape {
+                    appearance USE tie
+                    geometry DEF RF_crus Mesh {
+                      url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/RF_crus.STL"
+                    }
+                  }
+                  HingeJoint {
+                    jointParameters HingeJointParameters {
+                      axis 0.000000 0.000000 1.000000
+                      anchor -0.225000 -0.179770 0.035000
+                    }
+                    device [
+                      RotationalMotor {
+                        name "RWM"
+                        maxTorque 10000
+                      }
+                      PositionSensor {
+                        name "RWM_sensor"
+                      }
+                    ]
+                    endPoint Solid {
+                      translation -0.225000 -0.179770 0.035000
+                      children [
+                        Shape {
+                          appearance USE tie
+                          geometry DEF R_wheel Mesh {
+                            url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/R_wheel.STL"
+                          }
+                        }
+                      ]
+                      name "R_wheel"
+                      boundingObject USE R_wheel
+                      physics Physics {
+                        density -1
+                        mass 0.527790
+                        centerOfMass [ 0.000000 0.000000 0.000000 ]
+                        inertiaMatrix [
+                          6.311500e-04 6.311500e-04 1.121500e-03
+                          -2.601500e-20 2.518600e-20 3.037600e-21
+                        ]
+                      }
+                    }
+                  }
+                ]
+                name "RF_crus"
+                boundingObject USE RF_crus
+                physics Physics {
+                  density -1
+                  mass 0.137700
+                  centerOfMass [ -0.122120 -0.097578 0.000856 ]
+                  inertiaMatrix [
+                    5.122200e-04 7.909700e-04 1.298700e-03
+                    -6.159400e-04 1.212000e-05 9.683600e-06
+                  ]
+                }
+              }
+            }
+          ]
+          name "RF_thigh"
+          boundingObject USE RF_thigh
+          physics Physics {
+            density -1
+            mass 0.032477
+            centerOfMass [ 0.075000 -0.000000 -0.000000 ]
+            inertiaMatrix [
+              1.348000e-06 7.406100e-05 7.486700e-05
+              -1.296900e-20 -1.634800e-22 3.452700e-23
+            ]
+          }
+        }
+      }
+      HingeJoint {
+        jointParameters HingeJointParameters {
+          axis 0.000000 0.000000 1.000000
+          anchor -0.075000 0.000000 0.155000
+        }
+        device [
+          RotationalMotor {
+            name "RBM"
+            maxTorque 10000
+          }
+          PositionSensor {
+            name "RBM_sensor"
+          }
+        ]
+        endPoint Solid {
+          translation -0.075000 0.000000 0.155000
+          children [
+            Shape {
+              appearance USE tie
+              geometry DEF RB_thigh Mesh {
+                url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/RB_thigh.STL"
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 1.000000
+                anchor -0.150000 0.000000 -0.010000
+              }
+              device [
+                RotationalMotor {
+                  name "RBK"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "RBK_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.150000 0.000000 -0.010000
+                children [
+                  Shape {
+                    appearance USE tie
+                    geometry DEF RB_crus Mesh {
+                      url "D:/Document/Learning/Wheel_legged_robot/sim/robot/protos/meshes/RB_crus.STL"
+                    }
+                  }
+                ]
+                name "RB_crus"
+                boundingObject USE RB_crus
+                physics Physics {
+                  density -1
+                  mass 0.137700
+                  centerOfMass [ 0.122120 -0.097578 0.000856 ]
+                  inertiaMatrix [
+                    5.122200e-04 7.909700e-04 1.298700e-03
+                    6.159400e-04 -1.212000e-05 9.683600e-06
+                  ]
+                }
+              }
+            }
+            HingeJoint {
+              jointParameters HingeJointParameters {
+                axis 0.000000 0.000000 1.000000
+                anchor -0.150000 0.000000 -0.010000
+              }
+              device [
+                RotationalMotor {
+                  name "RBK"
+                  maxTorque 10000
+                }
+                PositionSensor {
+                  name "RBK_sensor"
+                }
+              ]
+              endPoint Solid {
+                translation -0.150000 0.000000 -0.010000
+                children [
+                  Shape {
+                    appearance USE tie
+                    geometry USE RB_crus
+                  }
+                ]
+                name "RB_crus"
+                boundingObject USE RB_crus
+                physics Physics {
+                  density -1
+                  mass 0.137700
+                  centerOfMass [ 0.122120 -0.097578 0.000856 ]
+                  inertiaMatrix [
+                    5.122200e-04 7.909700e-04 1.298700e-03
+                    6.159400e-04 -1.212000e-05 9.683600e-06
+                  ]
+                }
+              }
+            }
+          ]
+          name "RB_thigh"
+          boundingObject USE RB_thigh
+          physics Physics {
+            density -1
+            mass 0.032477
+            centerOfMass [ -0.075000 -0.000000 -0.000000 ]
+            inertiaMatrix [
+              1.348000e-06 7.406100e-05 7.486700e-05
+              -4.493900e-21 -2.952900e-23 -1.778400e-23
+            ]
+          }
+        }
+      }
+    ]
+    name IS name
+    boundingObject USE base
+    physics Physics {
+      density -1
+      mass 11.983000
+      centerOfMass [ 0.000000 -0.000126 -0.000000 ]
+      inertiaMatrix [
+        1.100300e-01 1.650000e-01 9.498000e-02
+        -9.674400e-18 -4.402800e-18 3.382800e-22
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/.vscode/
+/build/
+/MatlabFile/*.csv
+/MatlabFile/*.mat
+*.exe
