@@ -1,2 +1,5 @@
 *.wbproj
 *.cache
+
+/.vscode/
+/build/
