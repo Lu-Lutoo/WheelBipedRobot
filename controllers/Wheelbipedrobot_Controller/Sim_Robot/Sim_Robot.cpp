@@ -56,7 +56,7 @@ void Sim_Robot::Sensor_Init(int samplingPeriod)
 / @param None
 / @retval None
 */
-void Sim_Robot::Sensor_Update()
+const double *Sim_Robot::Sensor_dataUpdate()
 {
     ptr = Body_IMU->getRollPitchYaw();
     Sensor_data[0] = *ptr;
@@ -74,6 +74,8 @@ void Sim_Robot::Sensor_Update()
     Sensor_data[9] = LF_ps->getValue();
     Sensor_data[10] = LB_ps->getValue();
     Sensor_data[11] = LW_ps->getValue();
+
+    return Sensor_data;
 }
 
 /**

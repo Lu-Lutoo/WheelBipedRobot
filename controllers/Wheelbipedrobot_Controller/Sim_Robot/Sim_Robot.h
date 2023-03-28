@@ -25,8 +25,7 @@ class Sim_Robot : public Robot{
 
         void Get_Device(const std::string *);
         void Sensor_Init(int );
-        void Sensor_Update();
-        const double *Sensor_Transmit() const { return Sensor_data;}
+        const double *Sensor_dataUpdate();
         void Set_Motor_Torque(double *);
 
     private:
